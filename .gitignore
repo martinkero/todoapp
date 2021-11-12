@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+/frontend/build
+/frontend/.svelte-kit
+/frontend/package
+.gradle
+/backend/build/
+!gradle-wrapper.jar
