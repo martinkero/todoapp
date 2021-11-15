@@ -1,4 +1,5 @@
 import preprocess from 'svelte-preprocess';
+import adapter from '@sveltejs/adapter-static';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -13,12 +14,14 @@ const config = {
 			server: {
 				proxy: {
 					'/api': {
-						target: 'http://localhost:8080',
-						rewrite: (path) => path.replace(/^\/api/, '')
+						target: 'http://localhost:8080'
 					},
 				}
 			},
 		}),
+		adapter: adapter({
+			fallback: 'index.html'
+		})
 	}
 };
 
