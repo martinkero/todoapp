@@ -21,7 +21,8 @@ object TodoService {
 
     fun get(owner: UUID): List<Todo> {
         return transaction {
-            TodoTable.select { TodoTable.owner eq owner }.mapNotNull { Todo.fromResultRow(it) }.toList()
+            TodoTable.select { TodoTable.owner eq owner }.orderBy(TodoTable.id).mapNotNull { Todo.fromResultRow(it) }
+                .toList()
         }
     }
 
