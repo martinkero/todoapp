@@ -7,5 +7,3 @@
 		window.location.href += uuid;
 	});
 </script>
-
-<div>Index</div>
