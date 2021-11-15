@@ -8,10 +8,9 @@ import se.martinkero.UUIDSerializer
 import java.util.*
 
 object TodoTable : IntIdTable() {
-    val owner = uuid("uuid")
+    val owner = uuid("owner")
     val content = varchar("content", 1000)
     val completed = bool("completed")
-//    val index = integer("index")
 }
 
 @Serializable
