@@ -2,12 +2,13 @@
 	import Header from './header/Header.svelte';
 	import List from './list/List.svelte';
 
+	export let uuid;
 	let refreshTodos: () => Promise<void>;
 </script>
 
 <article>
-	<Header {refreshTodos} />
-	<List bind:refreshTodos />
+	<Header {uuid} {refreshTodos} />
+	<List {uuid} bind:refreshTodos />
 </article>
 
 <style>

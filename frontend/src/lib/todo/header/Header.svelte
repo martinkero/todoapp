@@ -1,25 +1,23 @@
 <script lang="ts">
-	import { getUUID } from '$lib/Utils.svelte';
+	import { createTodoRequest } from '$lib/Api.svelte';
+
+	export let uuid;
+	export let refreshTodos: () => Promise<void>;
 
 	let text: string;
 	let error = false;
 
-	export let refreshTodos: () => Promise<void>;
-
 	const createTodo = async () => {
 		if (!text) return;
 
-		const res = await fetch(`http://localhost:3000/api/${getUUID()}`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				content: text
-			} as Todo)
-		});
+		error = false;
 
-		error = !res.ok;
+		try {
+			await createTodoRequest(text, uuid);
+		} catch (e) {
+			error = true;
+		}
+
 		text = '';
 
 		refreshTodos();
@@ -44,7 +42,7 @@
 <style>
 	header {
 		background-color: var(--color-pink);
-		padding: 0.5rem;
+		padding: 0.6rem;
 		display: flex;
 		justify-content: space-between;
 	}
@@ -55,19 +53,19 @@
 		width: 100%;
 		padding: 0 0.5rem;
 	}
+	input:focus {
+		outline: none;
+	}
 	input::placeholder {
 		color: var(--color-gray);
 	}
-	input:focus {
-		outline: none;
+	.error::placeholder {
+		color: var(--color-pink-dark);
 	}
 	button {
 		border: none;
 		background-color: var(--color-gray);
 		font-size: 1.2rem;
-		padding: 0.5rem;
-	}
-	.error::placeholder {
-		color: var(--color-pink-dark);
+		padding: 0.6rem;
 	}
 </style>
