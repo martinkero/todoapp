@@ -22,8 +22,8 @@ services:
   todoapp-frontend:
     build: ./frontend
     ports:
-      - 80:80
-#      - 443:443
+#      - 80:80
+      - 443:443
 
 
 volumes:
