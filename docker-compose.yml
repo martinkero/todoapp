@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  todoapp-postgres:
+    image: "postgres:14.1-alpine"
+    restart: always
+    volumes:
+      - todoapp-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  todoapp-backend:
+    build: ./backend
+    environment:
+      - DB_SERVER=todoapp-postgres
+    ports:
+      - 8080:8080
+
+  todoapp-frontend:
+    build: ./frontend
+    ports:
+      - 80:80
+#      - 443:443
+
+
+volumes:
+  todoapp-data:
