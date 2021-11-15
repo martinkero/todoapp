@@ -1,4 +1,4 @@
-http://localhost 
+todo.martinkero.se
 
 root * /srv
 route {
