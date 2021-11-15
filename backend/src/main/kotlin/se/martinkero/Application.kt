@@ -25,7 +25,7 @@ fun Application.configureRouting() {
     }
 
     routing {
-        route("/") {
+        route("/api/") {
             todo()
         }
     }

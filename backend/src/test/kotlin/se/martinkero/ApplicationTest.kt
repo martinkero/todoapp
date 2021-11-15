@@ -29,7 +29,7 @@ class ApplicationTest {
     @Test
     fun testUUID() {
         withTestApplication({ configureRouting() }) {
-            handleRequest(HttpMethod.Get, "/uuid").apply {
+            handleRequest(HttpMethod.Get, "/api/uuid").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
                 val uuidRegex = """\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b""".toRegex()
                 assertTrue(uuidRegex.matches(response.content.orEmpty()))
@@ -42,7 +42,7 @@ class ApplicationTest {
         withTestApplication({
             setup(this)
         }) {
-            handleRequest(HttpMethod.Post, "/${testUUID}") {
+            handleRequest(HttpMethod.Post, "/api/${testUUID}") {
                 addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
                 setBody("""
                     {content: "Testing create todo"}
@@ -73,7 +73,7 @@ class ApplicationTest {
             ))
 
         }) {
-            handleRequest(HttpMethod.Get, "/${testUUID}").apply {
+            handleRequest(HttpMethod.Get, "/api/${testUUID}").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
                 assertNotNull(response.content)
                 val todos = Json.decodeFromString<List<Todo>>(response.content!!)
@@ -95,7 +95,7 @@ class ApplicationTest {
                 completed = false
             ))
         }) {
-            handleRequest(HttpMethod.Put, "/${testUUID}/${id}") {
+            handleRequest(HttpMethod.Put, "/api/${testUUID}/${id}") {
                 addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
                 setBody("""
                     {content: "Testing update todo 2", completed: true}
@@ -123,7 +123,7 @@ class ApplicationTest {
                 completed = false
             ))
         }) {
-            handleRequest(HttpMethod.Delete, "/${testUUID}/${id}").apply {
+            handleRequest(HttpMethod.Delete, "/api/${testUUID}/${id}").apply {
                 assertEquals(HttpStatusCode.OK, response.status())
                 val todo = TodoService.get(id!!)
                 assertNull(todo)
