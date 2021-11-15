@@ -5,6 +5,8 @@ import io.ktor.http.*
 import io.ktor.server.testing.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.deleteAll
 import org.jetbrains.exposed.sql.transactions.transaction
 import se.martinkero.entities.Todo
@@ -18,9 +20,18 @@ class ApplicationTest {
 
     private val testUUID = "121588cb-737d-4a77-a628-2d4723fdce6a"
 
+    private fun configureTestDatabase() {
+
+        Database.connect("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", driver = "org.h2.Driver")
+
+        transaction {
+            SchemaUtils.create(TodoTable)
+        }
+    }
+
     private fun setup(application: Application) {
         application.configureRouting()
-        configureDatabase()
+        configureTestDatabase()
         transaction {
             TodoTable.deleteAll()
         }

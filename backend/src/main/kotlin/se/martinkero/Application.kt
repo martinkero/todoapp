@@ -33,7 +33,10 @@ fun Application.configureRouting() {
 
 fun configureDatabase() {
 
-    Database.connect("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", driver = "org.h2.Driver")
+    Database.connect("jdbc:postgresql://todoapp-postgres:5432/postgres",
+        driver = "org.postgresql.Driver",
+        user = "postgres",
+        password = "postgres")
 
     transaction {
         SchemaUtils.create(TodoTable)
