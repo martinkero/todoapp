@@ -5,4 +5,5 @@ node_modules
 /frontend/package
 .gradle
 /backend/build/
+/backend/.idea
 !gradle-wrapper.jar
