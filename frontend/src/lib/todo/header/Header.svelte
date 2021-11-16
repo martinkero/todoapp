@@ -51,7 +51,8 @@
 		background-color: var(--color-pink);
 		font-size: 1.5rem;
 		width: 100%;
-		padding: 0 0.5rem;
+		border-bottom: 1px solid var(--color-gray);
+		margin-right: 0.5rem;
 	}
 	input:focus {
 		outline: none;
