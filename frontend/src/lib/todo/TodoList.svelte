@@ -2,7 +2,7 @@
 	import Header from './header/Header.svelte';
 	import List from './list/List.svelte';
 
-	export let uuid;
+	export let uuid: string;
 	let refreshTodos: () => Promise<void>;
 </script>
 

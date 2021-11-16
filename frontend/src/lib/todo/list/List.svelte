@@ -2,7 +2,7 @@
 	import { getTodosRequest, updateTodoRequest, deleteTodoRequest } from '$lib/Api.svelte';
 	import Checkbox from '$lib/checkbox/Checkbox.svelte';
 
-	export let uuid;
+	export let uuid: string;
 
 	const UNICODE_CROSS_MARK = '&#10060;&#xfe0e;';
 

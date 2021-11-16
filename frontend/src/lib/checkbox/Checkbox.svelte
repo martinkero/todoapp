@@ -1,6 +1,6 @@
-<script>
-	export let checked;
-	export let onChange;
+<script lang="ts">
+	export let checked: boolean;
+	export let onChange: () => void;
 </script>
 
 <input type="checkbox" bind:checked on:change={onChange} />

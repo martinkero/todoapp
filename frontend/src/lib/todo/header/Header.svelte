@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createTodoRequest } from '$lib/Api.svelte';
 
-	export let uuid;
+	export let uuid: string;
 	export let refreshTodos: () => Promise<void>;
 
 	let text: string;
