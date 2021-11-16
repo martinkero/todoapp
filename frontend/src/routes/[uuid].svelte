@@ -1,7 +1,6 @@
 <script lang="ts">
 	import TodoList from '$lib/todo/TodoList.svelte';
 	import { page } from '$app/stores';
-	export const prerender = true;
 
 	const uuid = $page.params.uuid;
 </script>
