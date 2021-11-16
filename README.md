@@ -3,6 +3,7 @@
 Basic todoapp (create/complete/delete) built on a Typescript/Svelte frontend, Kotlin/Ktor backend and PostgreSQL DB. Deployed with Docker Compose.
 
 Other technologies used:
+- Caddy - Serving frontend statically and reverse proxy for backend
 - JetBrains/Exposed (DSL mode) for type-safe SQL and easy table management
 - H2 in-memory DB for testing
 
@@ -20,6 +21,7 @@ Other technologies used:
 # Possible improvements
 - Feature: Drag and Drop sorting of todo's
 - Frontend: Internationalization
+- Frontend: Improve responsitivity on slow connections
 - Backend: Logging
 - Backend: Don't expose internal Todo-ID to frontend
 - Backend: Decrease duplication of fields in Todo.kt
