@@ -33,10 +33,16 @@ fun Application.configureRouting() {
 
 fun configureDatabase() {
 
-    Database.connect("jdbc:postgresql://todoapp-postgres:5432/postgres",
+    val dbServer = System.getenv("DB_SERVER")
+    val dbPort = System.getenv("DB_PORT")
+    val dbName = System.getenv("DB_NAME")
+    val dbUser = System.getenv("DB_USER")
+    val dbPassword = System.getenv("DB_PASSWORD")
+
+    Database.connect("jdbc:postgresql://${dbServer}:${dbPort}/${dbName}",
         driver = "org.postgresql.Driver",
-        user = "postgres",
-        password = "postgres")
+        user = dbUser,
+        password = dbPassword)
 
     transaction {
         SchemaUtils.create(TodoTable)

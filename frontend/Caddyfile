@@ -1,8 +1,8 @@
-todo.martinkero.se
+{$SITE_ADDRESS}
 
 root * /srv
 route {
-    reverse_proxy /api/* todoapp-backend:8080
+    reverse_proxy /api/* {$BACKEND_SERVER}:{$BACKEND_PORT}
     try_files {path} /index.html
     file_server
 }
