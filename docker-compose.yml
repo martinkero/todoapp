@@ -15,6 +15,8 @@ services:
 
   todoapp-backend:
     build: ./backend     
+    volumes: 
+      - caddy-data:/data
     expose:
       - 8080
     environment:
@@ -35,6 +37,9 @@ services:
       - SITE_ADDRESS=${SITE_ADDRESS:-http://localhost}
       - BACKEND_SERVER=todoapp-backend
       - BACKEND_PORT=8080     
+      - XDG_DATA_HOME=/data
 
 volumes:
   todoapp-data:
+  caddy-data:
+    external: true
