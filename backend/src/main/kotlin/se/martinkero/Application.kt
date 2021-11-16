@@ -2,6 +2,7 @@ package se.martinkero
 
 import io.ktor.application.*
 import io.ktor.features.*
+import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.serialization.*
 import io.ktor.server.engine.*
@@ -11,6 +12,7 @@ import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import se.martinkero.entities.TodoTable
 import se.martinkero.routing.todo
+import java.util.*
 
 fun main() {
     embeddedServer(Netty, port = 8080, watchPaths = listOf("classes")) {
@@ -26,6 +28,10 @@ fun Application.configureRouting() {
 
     routing {
         route("/api/") {
+            get("/uuid") {
+                call.respondText(UUID.randomUUID().toString())
+            }
+
             todo()
         }
     }

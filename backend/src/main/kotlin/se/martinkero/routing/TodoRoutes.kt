@@ -12,10 +12,6 @@ import java.util.*
 
 fun Route.todo() {
 
-    get("/uuid") {
-        call.respondText(UUID.randomUUID().toString())
-    }
-
     get("/{uuid}") {
 
         val uuid = call.parameters["uuid"]
