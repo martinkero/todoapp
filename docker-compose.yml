@@ -6,8 +6,8 @@ services:
     restart: always
     volumes:
       - todoapp-data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
+    expose:
+      - 5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -16,13 +16,13 @@ services:
     build: ./backend
     environment:
       - DB_SERVER=todoapp-postgres
-    ports:
-      - 8080:8080
+    expose:
+      - 8080
 
   todoapp-frontend:
     build: ./frontend
     ports:
-#      - 80:80
+      - 80:80
       - 443:443
 
 
