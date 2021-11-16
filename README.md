@@ -23,6 +23,7 @@ Other technologies used:
 - Frontend: Internationalization
 - Frontend: Improve responsitivity on slow connections
 - Backend: Logging
+- Backend: DB Table migration
 - Backend: Don't expose internal Todo-ID to frontend
 - Backend: Decrease duplication of fields in Todo.kt
 - Docker Compose depends_on is not enough to let DB init before starting backend, maybe possible to sleep/check for port?
