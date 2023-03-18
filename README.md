@@ -16,7 +16,7 @@ Other technologies used:
 # How to run
 - Checkout repo
 - `docker volume create --name=caddy-data`
-- `docker-compose up -d todoapp-postgres` (Only necessary to start seperate first time when db initializes)
+- `docker-compose up -d todoapp-postgres` (Only necessary to start separate first time when db initializes)
 - `docker-compose up -d` (env var SITE_ADDRESS specifies site/hostname, defaults to http://localhost)
 
 
